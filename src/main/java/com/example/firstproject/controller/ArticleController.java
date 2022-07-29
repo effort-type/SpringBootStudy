@@ -6,8 +6,12 @@ import com.example.firstproject.repository.ArticleRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+
+import java.util.Optional;
 
 @Controller
 @Slf4j // 로깅을 위한 어노테이션
@@ -37,5 +41,20 @@ public class ArticleController {
         // System.out.println(saved.toString());
 
         return "";
+    }
+
+    @GetMapping("/articles/{id}") // {}를 사용하면 변하는 수다
+    public String show(@PathVariable Long id, Model model) {
+        log.info("id = " + id);
+
+        // 1. id로 데이터 가져오기
+        // Optional<Article> articleEntity = articleRepository.findById(id); 모두가 java 8 버전이 아닐수도있기 때문에 지양
+        Article articleEntity = articleRepository.findById(id).orElse(null); // .orElse(null)은 값이 없다면 null을 반환해라
+
+        // 2. 가져온 데이터를 모델에 등록
+        model.addAttribute("article", articleEntity);
+
+        // 3. 보여줄 페이지를 설정
+        return "articles/show";
     }
 }
