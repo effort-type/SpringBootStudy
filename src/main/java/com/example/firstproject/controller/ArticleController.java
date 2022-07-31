@@ -42,7 +42,7 @@ public class ArticleController {
         log.info(saved.toString());
         // System.out.println(saved.toString());
 
-        return "";
+        return "redirect:/articles/" + saved.getId();
     }
 
     @GetMapping("/articles/{id}") // {}를 사용하면 변하는 수다
