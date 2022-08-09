@@ -84,4 +84,24 @@ public class ArticleController {
         return "/articles/edit";
     }
 
+    @PostMapping("/articles/update") // 업데이트는 patch 또는 put으로 보내고 받아야하는데 form 태그에서 제공하지 않음
+    public String update(ArticleForm form) {
+        log.info(form.toString());
+
+        // 1: DTO -> Entity로 변환
+        Article articleEntity = form.toEntity();
+        log.info(articleEntity.toString());
+
+        // 2: Entity를 DB로 저장한다다
+        // 2-1: DB에서 기존 데이터를 가져온다
+        Article target = articleRepository.findById(articleEntity.getId()).orElse(null);
+
+        // 2-2: 기존 데이터에 값을 갱신한다.
+        if(target != null) {
+            articleRepository.save(articleEntity); // Entity가 DB로 갱신
+        }
+
+        // 3: 수정 결과 페이지로 리다이렉트한다.
+        return "redirect:/articles/" + articleEntity.getId();
+    }
 }
