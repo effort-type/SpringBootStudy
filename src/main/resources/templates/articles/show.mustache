@@ -17,6 +17,9 @@
     {{/article}}
     </tbody>
 </table>
-<a href="/articles/{{article.id}}/edit" class="btn btn-primary">edit</a> <!-- #을 사용하지 않고도 모델에 등록된 데이터를 사용할 수 있음-->
+<a href="/articles/{{article.id}}/edit" class="btn btn-primary">Edit</a> <!-- #을 사용하지 않고도 모델에 등록된 데이터를 사용할 수 있음-->
+<!-- POST(생성), GET(조회), UPDATE(수정), DELETE(삭제) 할때 각각 메소드를 사용한다. 하지만 html에서는 post,get만 제공한다. -->
+<!-- 임의로 html에서 제공하는 GET, a 태그 즉, 링크를 사용-->
+<a href="/articles/{{article.id}}/delete" class="btn btn-danger">Delete</a> <!-- #을 사용하지 않고도 모델에 등록된 데이터를 사용할 수 있음-->
 <a href="/articles">Go to article List</a>
 {{>layouts/footer}}
