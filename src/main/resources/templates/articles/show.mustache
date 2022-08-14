@@ -22,4 +22,7 @@
 <!-- 임의로 html에서 제공하는 GET, a 태그 즉, 링크를 사용-->
 <a href="/articles/{{article.id}}/delete" class="btn btn-danger">Delete</a> <!-- #을 사용하지 않고도 모델에 등록된 데이터를 사용할 수 있음-->
 <a href="/articles">Go to article List</a>
+
+{{>comments/_comments}}
+
 {{>layouts/footer}}
