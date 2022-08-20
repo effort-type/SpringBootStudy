@@ -13,6 +13,9 @@ repositories {
 }
 
 dependencies {
+	// PostgreSQL 드라이버 추가, 다른 DBMS 드라이버 추가하는 방법은 start.spring.io에서 추가해서 코드 복붙 
+	runtimeOnly 'org.postgresql:postgresql'
+	
 	// 롬복 추가
 	compileOnly 'org.projectlombok:lombok'
 	annotationProcessor 'org.projectlombok:lombok'
